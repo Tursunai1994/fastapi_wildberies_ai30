@@ -16,13 +16,13 @@ async def get_db():
         db.close()
 
 
-#@user_router.post('/create',response_model=UserProfileCreateSchema)
-#async def create_user(user_data: UserProfileCreateSchema,db:Session = Depends(get_db))
-#     user_db = UserProfile(**user_data.dict())
- #    db.add(user_db)
-  #   db.commit()
-   #  db.refresh(user_db)
-    # return user_db
+@user_router.post('/create',response_model=UserProfileCreateSchema)
+async def create_user(user_data: UserProfileCreateSchema,db:Session = Depends(get_db))
+      user_db = UserProfile(**user_data.dict())
+      db.add(user_db)
+      db.commit()
+      db.refresh(user_db)
+      return user_db
 
 
 @user_router.get('/list',response_model=List[UserProfileListSchema])
